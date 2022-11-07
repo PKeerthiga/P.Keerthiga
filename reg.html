@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+h1 {
+  font-size: 20px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+img {
+height: 40px;}
+
+.success {
+  display: none;
+  background: #E1F8ED;
+  padding: 20px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+ 
+}
+.is-active {
+    display: block;
+  }
+    </style>
+    <script>
+$("#ajaxForm").submit(function(e){
+  alert("FSDFF");
+  e.preventDefault();
+  var action = $(this).attr("action");
+  var data = {};
+  $(this).serializeArray().map(function(x){data[x.name] = x.value;}); 
+  $.ajax({
+    type: "POST",
+    url: action,
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    headers: {
+      "Accept": "application/json"
+    }
+  }).done(function() {
+     $('.success').addClass('is-active');
+  }).fail(function() {
+     alert('An error occurred please try again later.')
+  });
+});        
+    </script>
+</head>
+<body>
+   
+    <div class="col-md-6 offset-md-3 mt-5">
+
+        </a>
+        <br>
+
+        <form accept-charset="UTF-8" action="#" method="POST" target="_blank" id="ajaxForm">
+            <div class="form-group">
+                <label for="exampleInputName">Username</label>
+                <input type="text" username="name" class="form-control" id="exampleInputName" placeholder="Enter your name" required="required">
+              </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1" required="required">Email</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName">Password</label>
+            <input type="text" password="name" class="form-control" id="exampleInputName" placeholder="Enter your name" required="required">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Platform</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="platform" required="required">
+              <option>Github</option>
+              <option>Gitlab</option>
+              <option>Bitbucket</option>
+            </select>
+            </div>
+          <div class="success">We received your submission, thank you!</div> 
+          <button type="submit"  ahref="#"class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+<br>
+    <a href="login.html">link for nxt pg</a>
+    
+</body>
+</html>
